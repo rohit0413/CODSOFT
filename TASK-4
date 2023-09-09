@@ -1,0 +1,40 @@
+     //WORD COUNT USING C++
+//Develop a program that counts the number of words in a given
+//text file. Prompt the user to enter the file name and display the
+//total word count.
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+int main() {
+    std::string filename;
+    std::cout << "Enter the name of the text file: ";
+    std::cin >> filename;
+
+    std::ifstream inputFile(filename);
+
+    if (!inputFile) {
+        std::cerr << "Error: Unable to open the file." << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    int wordCount = 0;
+
+    while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        std::string word;
+
+        while (iss >> word)
+         {
+            wordCount++;
+        }
+    }
+
+    inputFile.close();
+
+    std::cout << "Total word count in the file: " << wordCount << std::endl;
+
+    return 0;
+}
